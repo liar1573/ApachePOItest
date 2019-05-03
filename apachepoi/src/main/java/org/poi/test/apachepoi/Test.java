@@ -35,42 +35,43 @@ public class Test {
 		
 		List<List<String>> showList;
 		
-		showList = ExcelUtil.readXlsx(filePath);
-		
-		for (List<String> list : showList) {
-			for (String string : list) {
-				System.out.print(string + "    ");				
-			}
-			System.out.println();
-		}
-		
-//		ArrayList<TechnologyRequire> technologyRequiresList = new ArrayList<TechnologyRequire>();
-//		
 //		showList = ExcelUtil.readXlsx(filePath);
 //		
 //		for (List<String> list : showList) {
-//				TechnologyRequire techRequrire = new TechnologyRequire();
-//			
-//				techRequrire.setUserId(Integer.parseInt(list.get(0).substring(0, list.get(0).indexOf("."))));//第0位为userid
-//				techRequrire.setRequireName(list.get(1));
-//				techRequrire.setInvestPrice(Double.parseDouble(list.get(2)));
-//				techRequrire.setIndustrySituation(list.get(3));
-//				techRequrire.setArea(list.get(4));
-//				techRequrire.setDeadline(new Date(list.get(5)));
-//				techRequrire.setKeyword(list.get(6));
-//				techRequrire.setContent(list.get(7));
-//				techRequrire.setGmtCreate(new Date());
-//				techRequrire.setGmtModified(new Date());
-//				techRequrire.setRequireState("waiting");
-//				
-//				technologyRequiresList.add(techRequrire);
-//					
-//			
+//			for (String string : list) {
+//				System.out.print(string + "    ");				
+//			}
+//			System.out.println();
 //		}
 		
-//		for (TechnologyRequire technologyRequire : technologyRequiresList) {
-//			System.out.println(technologyRequire);
-//		}
+		ArrayList<TechnologyRequire> technologyRequiresList = new ArrayList<TechnologyRequire>();
+		
+		showList = ExcelUtil.readXlsx(filePath);
+		
+		for (List<String> list : showList) {
+				TechnologyRequire techRequrire = new TechnologyRequire();
+			
+//				techRequrire.setUserId(Integer.parseInt(list.get(0).substring(0, list.get(0).indexOf("."))));//第0位为userid
+				techRequrire.setUserId(Integer.parseInt(list.get(0)));
+				techRequrire.setRequireName(list.get(1));
+				techRequrire.setInvestPrice(Double.parseDouble(list.get(2)));
+				techRequrire.setIndustrySituation(list.get(3));
+				techRequrire.setArea(list.get(4));
+				techRequrire.setDeadline(new Date(list.get(5)));
+				techRequrire.setKeyword(list.get(6));
+				techRequrire.setContent(list.get(7));
+				techRequrire.setGmtCreate(new Date());
+				techRequrire.setGmtModified(new Date());
+				techRequrire.setRequireState("waiting");
+				
+				technologyRequiresList.add(techRequrire);
+					
+			
+		}
+		
+		for (TechnologyRequire technologyRequire : technologyRequiresList) {
+			System.out.println(technologyRequire);
+		}
 		
 		
 		

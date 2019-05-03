@@ -117,7 +117,7 @@ public class ExcelUtil {
                     if (cell == null) {
                         continue;
                     }
-                    rowList.add(cell.toString());
+                    rowList.add(getStringVal(cell));
                 }
                 result.add(rowList);
             }
