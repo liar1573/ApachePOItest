@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.poi.test.apachepoi.TechnologyRequire;
+import org.poi.test.apachepoi.Email;
 
 import utils.ExcelUtil;
 
@@ -31,7 +31,10 @@ public class Test {
 		// TODO Auto-generated method stub
 
 		ExcelUtil myExcelUtil = new ExcelUtil();
-		String filePath = "E:/网站项目相关/批量插入功能实现/技术需求批量导入模板.xlsx";
+		String filePath = "D:/研一下/申请公众号/邀请函扫描版/邀请函-邮件信息整理/邀请函-邮件信息.xlsx";
+		//百度了一下需要写绝对路径？？--->也不行
+		//又看到一个说法，文件需要放在项目目录厦门
+		
 		
 		List<List<String>> showList;
 		
@@ -44,34 +47,69 @@ public class Test {
 //			System.out.println();
 //		}
 		
-		ArrayList<TechnologyRequire> technologyRequiresList = new ArrayList<TechnologyRequire>();
+		
+		ArrayList<Email> emailList = new ArrayList<Email>();
 		
 		showList = ExcelUtil.readXlsx(filePath);
 		
 		for (List<String> list : showList) {
-				TechnologyRequire techRequrire = new TechnologyRequire();
+				Email email = new Email();
 			
-//				techRequrire.setUserId(Integer.parseInt(list.get(0).substring(0, list.get(0).indexOf("."))));//第0位为userid
-				techRequrire.setUserId(Integer.parseInt(list.get(0)));
-				techRequrire.setRequireName(list.get(1));
-				techRequrire.setInvestPrice(Double.parseDouble(list.get(2)));
-				techRequrire.setIndustrySituation(list.get(3));
-				techRequrire.setArea(list.get(4));
-				techRequrire.setDeadline(new Date(list.get(5)));
-				techRequrire.setKeyword(list.get(6));
-				techRequrire.setContent(list.get(7));
-				techRequrire.setGmtCreate(new Date());
-				techRequrire.setGmtModified(new Date());
-				techRequrire.setRequireState("waiting");
+//				email.setUserId(Integer.parseInt(list.get(0).substring(0, list.get(0).indexOf("."))));//第0位为userid
+				email.setID(Integer.parseInt(list.get(0)));
+				//ID是一定有的数据段
 				
-				technologyRequiresList.add(techRequrire);
+				email.setName(list.get(1));
+				//名字基本上也没有空的
+				
+				if (null != list.get(2)) {//类型有认识空的
+					email.setType(list.get(2));
+				} else {
+					email.setType("null");
+				}
+				
+				
+				if (null != list.get(3)) {//邮箱有认识空的
+					email.setEmailAddr(list.get(3));
+				} else {
+					email.setEmailAddr("null");
+				}
+				
+				
+
+				
+				emailList.add(email);
 					
 			
 		}
 		
-		for (TechnologyRequire technologyRequire : technologyRequiresList) {
-			System.out.println(technologyRequire);
+//		for (Email email : emailList) {
+//			System.out.println(email);
+//		}
+		
+//		for (int i = 0; i < 100; i++) {
+//			System.out.println(emailList.get(i));
+//		}
+		
+		ArrayList<Integer> tempIDList = new ArrayList<Integer>();
+		ArrayList<String> tempStringList = new ArrayList<String>();
+		
+		//循环3次，第一次找到没Type或者没EmailAddr的特殊用户
+		//第2次找CCF+NC的，
+		//第3次找单CCF的，
+		//第4次找单NC的
+		
+		
+		for (int i = 0; i < emailList.size(); i++) {
+			if((null == emailList.get(i).getType()) || ((null == emailList.get(i).getEmailAddr()))){
+				tempIDList.add(emailList.get(i).getID());
+				tempIDList.add(emailList.get(i).getName());
+			}
+			System.out.println(emailList.get(i));
 		}
+		
+		
+		
 		
 		
 		
