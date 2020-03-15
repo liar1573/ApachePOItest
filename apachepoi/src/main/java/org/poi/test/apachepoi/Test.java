@@ -101,13 +101,25 @@ public class Test {
 		
 		
 		for (int i = 0; i < emailList.size(); i++) {
-			if((null == emailList.get(i).getType()) || ((null == emailList.get(i).getEmailAddr()))){
+//			if(("" == emailList.get(i).getType()) || (("" == emailList.get(i).getEmailAddr()))){
+			if(emailList.get(i).getType().equals("CCF+NC") && ("" != emailList.get(i).getEmailAddr())){	
+				//偷个懒根据不同的判定条件多写几次
 				tempIDList.add(emailList.get(i).getID());
-				tempIDList.add(emailList.get(i).getName());
+				tempStringList.add(emailList.get(i).getEmailAddr());
+//				tempStringList.add(emailList.get(i).getName());
 			}
-			System.out.println(emailList.get(i));
+//			System.out.println(emailList.get(i));
 		}
 		
+		for (String string : tempStringList) {
+			System.out.print(string + ";");
+		}
+		
+		System.out.println();
+		
+		for (Integer Id : tempIDList) {
+			System.out.print(Id + ";");
+		}
 		
 		
 		
